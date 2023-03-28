@@ -18,21 +18,33 @@
                     <input v-model="c_password" type="password" class="form-control" id="inputPassword4">
                 </div>
 
-                <div class="col-12">
+                <div class="col-12" v-if="!auth.isLoading">
                     <button type="submit" class="btn btn-primary">Sign in</button>
                 </div>
+                <div class="col-12" v-else>
+                    <button type="submit" class="btn btn-primary" disabled>Loading</button>
+                </div>
+                
         </form>
     </div>
 </template>
 
 <script setup>
 import {useAuth} from '@/stores/auth.js'
-    const auth=useAuth()
-    const name=ref(null)
-    const email=ref(null)
-    const password=ref(null)
-    const c_password=ref(null)
-    const form=ref({})
+const auth=useAuth()
+auth.guest()
+
+// definePageMeta({
+//     middleware:['is-guest']
+// })
+
+
+
+const name=ref(null)
+const email=ref(null)
+const password=ref(null)
+const c_password=ref(null)
+const form=ref({})
 function handleRegister()
 {
     form.value={
@@ -41,7 +53,6 @@ function handleRegister()
         password: password.value,
         c_password: c_password.value
     }
-    console.log(form.value.name)
 
     auth.register(form)
 

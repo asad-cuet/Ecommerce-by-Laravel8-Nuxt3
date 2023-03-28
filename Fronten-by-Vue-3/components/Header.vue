@@ -15,12 +15,24 @@
                                 <li class="nav-item">
                                     <NuxtLink class="nav-link" to="/categories">Category</NuxtLink>
                                 </li>
-                                <li class="nav-item">
-                                    <NuxtLink class="nav-link" to="/auth/login">Login</NuxtLink>
-                                </li>
-                                <li class="nav-item">
-                                    <NuxtLink class="nav-link" to="/auth/register">Register</NuxtLink>
-                                </li>
+                                <div v-if="!auth.isLoggedIn()">
+                                    <li class="nav-item">
+                                        <NuxtLink class="nav-link btn bg-primary" to="/auth/login">Login</NuxtLink>
+                                    </li>
+                                    <li class="nav-item">
+                                        <NuxtLink class="nav-link btn bg-success" to="/auth/register">Register</NuxtLink>
+                                    </li>
+                                </div>
+                                <div v-else>
+                                    <li v-if="!auth.isLoading" class="nav-item">
+                                        <button class="nav-link btn bg-danger" @click="auth.logout()">Logout</button>
+                                    </li>
+                                    <li v-else class="nav-item">
+                                        <button class="nav-link btn bg-danger" disabled>Loading</button>
+                                    </li>
+                                </div>
+                                
+                                
 
                                 <!-- <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -48,3 +60,8 @@
         </nav>
     </div>
 </template>
+<script setup>
+import {useAuth} from '@/stores/auth.js'
+const auth=useAuth()
+
+</script>
