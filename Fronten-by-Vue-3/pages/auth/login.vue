@@ -28,6 +28,7 @@
 import {useAuth} from '@/stores/auth.js'
 const auth=useAuth()
 auth.guest()
+auth.isLoading=false
 
 // definePageMeta({
 //     middleware:['is-guest']

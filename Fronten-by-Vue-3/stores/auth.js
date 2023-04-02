@@ -118,5 +118,9 @@ export const useAuth = defineStore('auth', () => {
   
     return { isAuthenticated,user,response,isLoading,register, login, logout, isLoggedIn, authGuard, guest }
   },{
-    persist: true,
+    persist: {
+        storage: persistedState.cookiesWithOptions({
+          sameSite: 'strict',
+        }),
+      },
   })
