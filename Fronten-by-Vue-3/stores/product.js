@@ -25,17 +25,8 @@ export const useProduct = defineStore('product', () => {
         })
 
 
-
-    
-        
-    
-
-    // const doubleCount = computed(() => count.value * 2)
-    // function appendProduct(formData) {
-
-    // }
     function getProduct(_id) {
-        return products.value.find(product=> {
+        return products.value.filter(product=> {
             if(product.id.toString() === _id)
             {
                 return product
@@ -43,12 +34,7 @@ export const useProduct = defineStore('product', () => {
         })
 
     }
-    // function updateProduct(fromData,id) {
 
-    // }
-    // function deleteProduct(id) {
-
-    // }
   
     return { products,productsLoading, getProduct }
   },{

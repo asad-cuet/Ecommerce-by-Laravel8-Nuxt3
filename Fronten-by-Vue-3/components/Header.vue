@@ -67,6 +67,24 @@
 
 
 
+
+            <!-- <div v-if="auth.isLoggedIn()">
+                <li class="nav-item">
+                      <NuxtLink class="nav-link" to="/auth/profile">Profile</NuxtLink>
+                </li>
+                <li class="nav-item">
+                      <NuxtLink class="nav-link" to="/">My Orders</NuxtLink>
+                </li>
+                <li class="nav-item">
+                      <button class="dropdown-item" @click="auth.logout()">
+                            Logout
+                      </button>
+                </li>
+
+
+            </div> -->
+
+
             <div v-if="auth.isLoggedIn()">
                 <li class="nav-item dropdown">
                     <button type="button" @click="toggle_show=!toggle_show" id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

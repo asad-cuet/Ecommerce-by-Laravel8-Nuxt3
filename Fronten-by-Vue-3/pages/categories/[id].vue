@@ -1,14 +1,10 @@
 <template>
     <div>
 
-        <div class="py-3 mb-4 shadow-sm bg-warning border-top">
-            <div class="container">
-                    <h6 class="mb-0">Product View</h6>      
-            </div>       
-        </div>      
+      
 
 
-        <div class="container">
+        <!-- <div class="container">
             <div class="card shadow product_data">
                     <div class="card-body">
                         <div class="row">
@@ -54,9 +50,40 @@
 
                     </div>
             </div>
+        </div> -->
+
+        <div class="py-3 mb-4 shadow-sm bg-warning border-top">
+            <div class="container">
+                    <h6 class="mb-0">Category View</h6>      
+            </div>       
+        </div>   
+
+        <div class="py-5">
+            <div class="container">
+                    <div class="row">
+                        <h2></h2>
+                        
+                                <!-- @foreach ($product as $item) -->
+                                    <div v-for="product in categoryProducts" class="col-md-3 mb-3">
+                                            <div class="card">
+                                            <NuxtLink :to="`/products/${product.id}`">
+                                            
+                                                <img :src="product.image" alt="Product Image" class="w-100">
+                                                <div class="card-body">
+                                                        <h5>{{ product.name }}</h5>
+                                                        <span class="float-start">${{ product.selling_price }}</span>
+                                                        <span class="float-end"><s>${{ product.original_price }}</s></span>
+                                                </div>
+                                            
+                                            </NuxtLink>   
+                                            </div>   
+
+                                    </div>
+                                <!-- @endforeach -->
+                        
+                    </div>
+            </div>
         </div>
-
-
 
     </div>
 </template>
@@ -65,27 +92,17 @@
 
 
 <script setup>
-import { useProduct } from '@/stores/product.js'
-import { useCart } from '@/stores/cart.js'
-const productStore=useProduct()
-const myCart=useCart()
+import { useCategory} from '@/stores/category.js'
+const categoryStore=useCategory()
+
 const route= useRoute()
 
-const product= productStore.getProduct(route.params.id)[0]
+const categoryProducts=await categoryStore.getCategory(route.params.id)
+
+console.log(categoryProducts)
 
 
 
-const quantity=ref(1)
-
-
-function increment()
-{
-    quantity.value++
-}
-function decrement()
-{
-    if(quantity.value>0) quantity.value--
-}
 
 
 </script>

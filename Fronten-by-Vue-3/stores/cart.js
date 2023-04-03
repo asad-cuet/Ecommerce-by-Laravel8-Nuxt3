@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import axios from "axios";
 
 
+
 export const useCart = defineStore('cart', () => {
 
     const cartContent=ref({})
@@ -48,11 +49,7 @@ export const useCart = defineStore('cart', () => {
     {
         if(cartContent.value.hasOwnProperty(product_id))
         {
-            // cartContent.value[product_id]=
-            // {
-            //     product_id:product_id,
-            //     quantity: cartContent.value[product_id].quantity+1
-            // }
+            alert("This product already added in Cart")
         }
         else
         {
@@ -75,8 +72,6 @@ export const useCart = defineStore('cart', () => {
 
             const productDetails=getProduct(product_id)
 
-            // console.log(getProduct(product_id))
-
             const cost=product.quantity * productDetails.selling_price
 
             totalCost.value+=cost
@@ -86,6 +81,7 @@ export const useCart = defineStore('cart', () => {
               id: product.product_id,
               name:productDetails.name,
               selling_price:productDetails.selling_price,
+              image:productDetails.image,
               quantity: product.quantity,
               cost: cost
             }

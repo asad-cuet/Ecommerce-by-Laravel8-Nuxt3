@@ -26,7 +26,7 @@
                                     <div class="card">
                                     <NuxtLink :to="`/products/${product.id}`">
                                     
-                                        <img src="/products/oppo.jpg"  :alt="product.name" class="w-100" />
+                                        <img :src="product.image"  :alt="product.name" class="w-100" />
                                         <div class="card-body">
                                                 <h5>{{product.name}}</h5>
                                                 <span class="float-start">${{ product.selling_price }}</span>
@@ -51,8 +51,6 @@
 <script setup>
 import { useProduct } from '@/stores/product.js'
 const productStore=useProduct()
-
-
 
 </script>
   

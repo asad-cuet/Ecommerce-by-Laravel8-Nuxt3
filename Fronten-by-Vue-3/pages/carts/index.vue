@@ -16,7 +16,7 @@
                         <div v-for="content in myCart.cartProducts()" class="row product_data">
             
                                 <div class="col-md-2 my-auto">
-                                    <img src="/products/oppo.jpg" height="70px" width="70px" alt="Image">
+                                    <img :src="content.image" class="w-50" alt="Image">
                                 </div>
                                 <div class="col-md-3 my-auto">
                                     <h6>{{ content.name }}</h6>
