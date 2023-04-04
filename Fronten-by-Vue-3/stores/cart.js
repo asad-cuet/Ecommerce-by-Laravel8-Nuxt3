@@ -8,6 +8,7 @@ export const useCart = defineStore('cart', () => {
     const cartContent=ref({})
     const cartLength=ref(0)
     const totalCost=ref(0)
+    const isLoading=ref(false)
 
 
 
@@ -65,7 +66,6 @@ export const useCart = defineStore('cart', () => {
 
     function cartProducts()
     {
-        console.log('cartProducts')
         totalCost.value=0
         return Object.keys(cartContent.value).map(product_id => {
             const product=cartContent.value[product_id]
@@ -121,9 +121,43 @@ export const useCart = defineStore('cart', () => {
         }
     }
 
+    function resetCart()
+    {
+        cartContent.value={}
+        cartLength.value=0
+        totalCost.value=0
+        isLoading.value=false
+        products.value=null
+        response.value={}
+    }
 
 
-    return { cartContent,cartLength,totalCost, addToCart,cartProducts,removeCartItem, incrementQuantity, decrementQuantity }
+    function proceedOrder(formData)
+    {
+        isLoading.value=true
+        console.log(cartProducts())
+        formData.carts= cartProducts()
+        axios.post(baseUrl+'/proceed-order',formData)      
+              .then((res)=>{
+                response.value=res.data
+                if(response.value.success)
+                {
+                    isLoading.value=false
+                    alert('Order submitted successfully')
+                    resetCart()
+                    navigateTo('/auth/orders')
+                }
+               }) 
+              .catch((error)=>{
+                  console.log(error)
+                  alert('Order submission falied')
+                  isLoading.value=false
+               })
+    }
+
+
+
+    return { cartContent,cartLength,totalCost, addToCart,cartProducts,removeCartItem, incrementQuantity, decrementQuantity, proceedOrder }
 },{
   persist: true,
 })

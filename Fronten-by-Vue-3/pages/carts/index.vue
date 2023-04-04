@@ -47,7 +47,7 @@
                     <div class="card-footer text-center">
                         <h6>Total Price : $ <span class="total">{{ myCart.totalCost }}</span></h6>
                         <br>
-                        <a href="" class="btn btn-outline-success">Proceed to Checkout</a>
+                        <NuxtLink to="/carts/checkout" class="btn btn-outline-success">Proceed to Checkout</NuxtLink>
                     </div>
                 </div>
                 <div v-else>

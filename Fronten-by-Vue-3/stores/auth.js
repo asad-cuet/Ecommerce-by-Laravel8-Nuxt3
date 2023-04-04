@@ -6,7 +6,8 @@ export const useAuth = defineStore('auth', () => {
     const response=ref({})
     const user=ref({
         name:'',
-        token:''
+        token:'',
+        user_id:''
     })
     const isLoading=ref(false)
     const baseUrl='http://127.0.0.1:8000/api'
@@ -78,8 +79,7 @@ export const useAuth = defineStore('auth', () => {
                 if(response.value.success)
                 {
                     isAuthenticated.value=false
-                    user.value.name=''
-                    user.value.token=''
+                    user.value={}
                     isLoading.value=false
                     navigateTo('/auth/login')
                 }
@@ -111,6 +111,7 @@ export const useAuth = defineStore('auth', () => {
         isAuthenticated.value=true
         user.value.name=response.value.user.name
         user.value.token=response.value.user.token
+        user.value.user_id=response.value.user.user_id
     }
 
 

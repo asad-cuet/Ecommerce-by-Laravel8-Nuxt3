@@ -101,6 +101,11 @@
                         </button>
                     </div>
                 </li>
+                <li class="nav-item">
+                  <button class="dropdown-item" @click="auth.logout()">
+                            Logout
+                  </button>
+                </li>
             </div>
 
         
