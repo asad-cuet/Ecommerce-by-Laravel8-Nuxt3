@@ -145,7 +145,7 @@ export const useCart = defineStore('cart', () => {
                     isLoading.value=false
                     alert('Order submitted successfully')
                     resetCart()
-                    navigateTo('/auth/orders')
+                    navigateTo('/orders')
                 }
                }) 
               .catch((error)=>{

@@ -27,7 +27,7 @@
                                                                 <td>{{ order.total_price }}</td>
                                                                 <td>{{ order.status==0? 'Pending':'Completed' }}</td>
                                                                 <td>
-                                                                        <a href="" class="btn btn-primary">View</a>
+                                                                        <NuxtLink :to="`/orders/${order.id}`" class="btn btn-primary">View</NuxtLink>
                                                                 </td>
                                                             </tr>          
 
@@ -49,11 +49,14 @@
 </template>
 <script setup>
 import { useOrder } from '@/stores/order.js'
+import {useAuth} from '@/stores/auth.js'
+const auth=useAuth()
+auth.authGuard()
 const myOrder=useOrder()
 
 const orders=ref([])
 orders.value=await myOrder.getOrders()
 
-console.log(orders.value)
+
 
 </script>

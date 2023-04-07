@@ -42,8 +42,66 @@ export const useOrder = defineStore('order', () => {
     }
 
 
+    function getOrderInfo(_id)
+    {
+        isLoading.value=true
+        if(auth.user.name==="")
+        {
+            isLoading.value=false
+            return false
+        }
+        else
+        {
+            
+            return axios.get(baseUrl+'/order-info/'+_id)      
+                        .then((res)=>{
+                        response.value=res.data
+                        if(response.value.success)
+                        {
+                            isLoading.value=false
+                            return response.value.data
 
-    return {  getOrders }
+                        }
+                        }) 
+                        .catch((error)=>{
+                            console.log(error)
+                            isLoading.value=false
+                        })
+        }
+    }
+
+
+    function getOrderDetails(_id)
+    {
+        isLoading.value=true
+        if(auth.user.name==="")
+        {
+            isLoading.value=false
+            return false
+        }
+        else
+        {
+            
+            return axios.get(baseUrl+'/my-orders/'+_id)      
+                        .then((res)=>{
+                        response.value=res.data
+                        if(response.value.success)
+                        {
+                            isLoading.value=false
+                            return response.value.data
+
+                        }
+                        }) 
+                        .catch((error)=>{
+                            console.log(error)
+                            isLoading.value=false
+                        })
+        }
+    }
+
+
+
+    return {  getOrders, getOrderInfo, getOrderDetails }
 },{
   persist: true,
 })

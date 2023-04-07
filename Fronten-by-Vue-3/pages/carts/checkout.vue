@@ -59,7 +59,7 @@
                                                 </div>
                                                 <div class="col-md-6 mt-3">
                                                     <label for="">Post Code</label>
-                                                    <input required type="password" name="pincode" v-model="pincode" class="form-control pincode" placeholder="Enter Pin Code">
+                                                    <input required type="number" name="pincode" v-model="pincode" class="form-control pincode" placeholder="Enter Pin Code">
                                                     <span id="pincode_error" class="text-danger"></span>
                                                 </div>
                                         </div>
@@ -131,6 +131,7 @@
 import {useAuth} from '@/stores/auth.js'
 import { useCart } from '@/stores/cart.js'
 const auth=useAuth()
+auth.authGuard()
 const myCart=useCart()
 
 

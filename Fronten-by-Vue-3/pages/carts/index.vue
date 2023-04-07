@@ -73,6 +73,7 @@
 import {useAuth} from '@/stores/auth.js'
 import { useCart } from '@/stores/cart.js'
 const auth=useAuth()
+auth.authGuard()
 const myCart=useCart()
 
 console.log(myCart.cartProducts())
